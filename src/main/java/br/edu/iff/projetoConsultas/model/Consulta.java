@@ -1,5 +1,6 @@
 package br.edu.iff.projetoConsultas.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,10 +29,18 @@ public class Consulta implements Serializable{
     @Column(nullable = false)
     private float valor;
     
+    @JsonManagedReference
+    @ManyToOne
     private Assistente assistente;
     
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Psicologo psicologo;
     
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Paciente paciente;
     
     public Long getId() {

@@ -1,10 +1,12 @@
 package br.edu.iff.projetoConsultas.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Psicologo extends Pessoa{
@@ -17,6 +19,8 @@ public class Psicologo extends Pessoa{
     @Enumerated(EnumType.STRING)
     private TipoAbordagemEnum tipo;
     
+    @JsonBackReference
+    @OneToMany(mappedBy = "psicologo")
     private List<Consulta> consultas;
 
     public String getCrp() {
