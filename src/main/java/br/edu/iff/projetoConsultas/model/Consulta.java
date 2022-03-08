@@ -1,0 +1,106 @@
+package br.edu.iff.projetoConsultas.model;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Objects;
+
+public class Consulta implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
+    private Long id;
+    private Calendar data;
+    private Calendar horario;
+    private float valor;
+    
+    private Assistente assistente;
+    
+    private Psicologo psicologo;
+    
+    private Paciente paciente;
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Calendar getData() {
+        return data;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
+    }
+
+    public Calendar getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Calendar horario) {
+        this.horario = horario;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public Assistente getAssistente() {
+        return assistente;
+    }
+
+    public void setAssistente(Assistente assistente) {
+        this.assistente = assistente;
+    }
+
+    public Psicologo getPsicologo() {
+        return psicologo;
+    }
+
+    public void setPsicologo(Psicologo psicologo) {
+        this.psicologo = psicologo;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Consulta other = (Consulta) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+}
