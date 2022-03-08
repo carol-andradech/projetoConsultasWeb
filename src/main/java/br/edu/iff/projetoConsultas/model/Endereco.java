@@ -2,24 +2,22 @@ package br.edu.iff.projetoConsultas.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class Endereco implements Serializable{
     private static final long serialVersionUID = 1L;
-
-    private Long id;
+    
+    @Column(length = 200, nullable = false)
     private String rua;
     private int numero;
+    @Column(length = 50, nullable = false)
     private String bairro;
+    @Column (nullable = false, length = 50)
     private String cidade;
+    @Column(length = 9)
     private String cep;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getRua() {
         return rua;
@@ -63,8 +61,7 @@ public class Endereco implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
+        int hash = 3;
         hash = 71 * hash + Objects.hashCode(this.rua);
         hash = 71 * hash + this.numero;
         hash = 71 * hash + Objects.hashCode(this.bairro);
@@ -100,10 +97,8 @@ public class Endereco implements Serializable{
         if (!Objects.equals(this.cep, other.cep)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
         return true;
     }
+
 
 }

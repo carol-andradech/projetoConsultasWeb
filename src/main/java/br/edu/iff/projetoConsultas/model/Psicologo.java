@@ -1,11 +1,20 @@
 package br.edu.iff.projetoConsultas.model;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
+@Entity
 public class Psicologo extends Pessoa{
-
+    
+    @Column(nullable = false, length = 14, unique = true)
     private String crp;
+    @Column(nullable = false)
     private String senha;
+    @Column(nullable = false, length = 15)
+    @Enumerated(EnumType.STRING)
     private TipoAbordagemEnum tipo;
     
     private List<Consulta> consultas;

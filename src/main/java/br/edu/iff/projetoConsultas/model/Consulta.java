@@ -3,13 +3,27 @@ package br.edu.iff.projetoConsultas.model;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Consulta implements Serializable{
     private static final long serialVersionUID = 1L;
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Calendar data;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIME)
     private Calendar horario;
+    @Column(nullable = false)
     private float valor;
     
     private Assistente assistente;
@@ -73,9 +87,6 @@ public class Consulta implements Serializable{
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-
-    
-    
     
     @Override
     public int hashCode() {

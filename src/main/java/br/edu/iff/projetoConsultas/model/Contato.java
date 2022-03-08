@@ -1,22 +1,18 @@
 package br.edu.iff.projetoConsultas.model;
 
 import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-
+@Embeddable
 public class Contato implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    private long id;
+    @Column( length = 14, nullable = false)
     private String telefone;
+    @Column (length = 50)
     private String email;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getTelefone() {
         return telefone;
@@ -36,8 +32,9 @@ public class Contato implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + (int) (this.id ^ (this.id >>> 32));
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.telefone);
+        hash = 37 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -53,12 +50,13 @@ public class Contato implements Serializable{
             return false;
         }
         final Contato other = (Contato) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         return true;
     }
-    
-    
-    
+      
 }
