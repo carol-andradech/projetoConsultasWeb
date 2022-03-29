@@ -36,15 +36,18 @@ public class Consulta implements Serializable{
     
     @JsonManagedReference
     @ManyToOne
+    @NotNull(message = "Consulta deve ter sido marcado por um assistente.")
     private Assistente assistente;
     
     @JsonManagedReference
     @ManyToOne
+    @NotNull(message = "Consulta deve ter um psicólogo.")
     @JoinColumn(nullable = false)
     private Psicologo psicologo;
     
     @JsonManagedReference
     @ManyToOne
+    @NotNull(message = "Consulta deve ter um paciente.")
     @JoinColumn(nullable = false)
     private Paciente paciente;
     
