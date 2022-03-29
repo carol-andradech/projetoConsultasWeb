@@ -1,5 +1,6 @@
 package br.edu.iff.projetoConsultas.model;
 
+import br.edu.iff.projetoConsultas.annotation.EmailValidation;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ public class Contato implements Serializable{
     private String telefone;
     @Column (nullable = false, length = 100, unique = true, updatable = false)
     @NotBlank(message = "Email obrigaório.")
-    @Email
+    @EmailValidation(message = "Email inválido.")
     private String email;
 
     public String getTelefone() {
