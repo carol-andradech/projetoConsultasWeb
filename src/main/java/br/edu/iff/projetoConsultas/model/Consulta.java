@@ -2,7 +2,8 @@ package br.edu.iff.projetoConsultas.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Consulta implements Serializable{
@@ -21,12 +23,15 @@ public class Consulta implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar data;
+    @NotNull(message = "Data da consulta é obrigatória.")
+    @FutureOrPresent (message = "Data da consulta deve ser atual ou no futuro.")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataConsulta;
     @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
-    private Calendar horario;
+    @NotNull(message = "Horário é obrigatório.")
+    private LocalTime horario;
     @Column(nullable = false)
+    @NotNull(message = "Valor é obrigatório.")
     private float valor;
     
     @JsonManagedReference
@@ -51,22 +56,23 @@ public class Consulta implements Serializable{
         this.id = id;
     }
 
-    public Calendar getData() {
-        return data;
+    public LocalDate getDataConsulta() {
+        return dataConsulta;
     }
 
-    public void setData(Calendar data) {
-        this.data = data;
+    public void setDataConsulta(LocalDate dataConsulta) {
+        this.dataConsulta = dataConsulta;
     }
 
-    public Calendar getHorario() {
+    public LocalTime getHorario() {
         return horario;
     }
 
-    public void setHorario(Calendar horario) {
+    public void setHorario(LocalTime horario) {
         this.horario = horario;
     }
 
+   
     public float getValor() {
         return valor;
     }

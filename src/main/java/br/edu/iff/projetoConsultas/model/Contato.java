@@ -4,14 +4,21 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
 
 @Embeddable
 public class Contato implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @Column( length = 14, nullable = false)
+    @NotBlank(message = "Telefone obrigaório.")
+    @Length(min = 13, max = 14, message = "Telefone deve ter 13 ou 14 caracteres (Ex: (99)9999-9999 ou (99)99999-9999).")
     private String telefone;
-    @Column (length = 50)
+    @Column (nullable = false, length = 100, unique = true, updatable = false)
+    @NotBlank(message = "Email obrigaório.")
+    @Email
     private String email;
 
     public String getTelefone() {

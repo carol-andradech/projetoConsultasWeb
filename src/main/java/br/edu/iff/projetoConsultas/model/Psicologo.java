@@ -6,21 +6,31 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Psicologo extends Pessoa{
     
     @Column(nullable = false, length = 14, unique = true)
+    @NotBlank(message = "CRP necessário.")
     private String crp;
     @Column(nullable = false)
+    @NotBlank(message = "Senha obrigatória.")
+    @Length(min = 8, message = "Senha deve ter no mímino 8 caracteres.")
     private String senha;
     @Column(nullable = false, length = 15)
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Tipo de abordagem obrigatório.")
     private TipoAbordagemEnum tipo;
     
     @JsonBackReference
     @OneToMany(mappedBy = "psicologo")
+    @JoinColumn(nullable = false, name = "psicologo_ID")
     private List<Consulta> consultas;
 
     public String getCrp() {
