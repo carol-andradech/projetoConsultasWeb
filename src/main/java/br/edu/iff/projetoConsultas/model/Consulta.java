@@ -1,6 +1,5 @@
 package br.edu.iff.projetoConsultas.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,18 +33,15 @@ public class Consulta implements Serializable{
     @NotNull(message = "Valor é obrigatório.")
     private float valor;
     
-    @JsonManagedReference
     @ManyToOne
     @NotNull(message = "Consulta deve ter sido marcado por um assistente.")
     private Assistente assistente;
     
-    @JsonManagedReference
     @ManyToOne
     @NotNull(message = "Consulta deve ter um psicólogo.")
     @JoinColumn(nullable = false)
     private Psicologo psicologo;
     
-    @JsonManagedReference
     @ManyToOne
     @NotNull(message = "Consulta deve ter um paciente.")
     @JoinColumn(nullable = false)

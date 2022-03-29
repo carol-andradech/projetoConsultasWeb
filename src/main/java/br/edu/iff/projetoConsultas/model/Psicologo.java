@@ -1,6 +1,6 @@
 package br.edu.iff.projetoConsultas.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class Psicologo extends Pessoa{
     @NotNull(message = "Tipo de abordagem obrigatório.")
     private TipoAbordagemEnum tipo;
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "psicologo")
     @JoinColumn(nullable = false, name = "psicologo_ID")
     private List<Consulta> consultas;

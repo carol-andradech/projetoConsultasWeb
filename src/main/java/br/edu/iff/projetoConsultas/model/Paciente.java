@@ -1,6 +1,6 @@
 package br.edu.iff.projetoConsultas.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -15,7 +15,7 @@ public class Paciente extends Pessoa{
     @NotBlank(message = "Prontuário necessário.")
     private int prontuario;
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "paciente")
     @JoinColumn(nullable = false, name = "paciente_ID")
     private List<Consulta> consultas = new ArrayList<>();

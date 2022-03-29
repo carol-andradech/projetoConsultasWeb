@@ -1,6 +1,6 @@
 package br.edu.iff.projetoConsultas.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -22,7 +22,7 @@ public class Assistente extends Pessoa{
     @Length(min = 8, message = "Senha deve ter no mímino 8 caracteres.")
     private String senha;
     
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "assistente")
     @JoinColumn(nullable = false, name = "assistente_ID")
     private List<Consulta> consultas = new ArrayList<>();
