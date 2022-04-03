@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ConsultaRepository extends JpaRepository<Consulta, Long>{
+public interface ConsultasRepository extends JpaRepository<Consulta, Long>{
    
     public List<Consulta> findByPacienteId(Long pacienteId, Pageable page);
     
